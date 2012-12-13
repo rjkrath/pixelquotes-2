@@ -8,24 +8,25 @@ class pixelquote_widget extends WP_Widget {
 	function widget( $args, $instance ) {
 		// Widget output
 		global $pixel_quote_version;
-		$title = __("Don't foget:","quote-pixel");
+		$title = __("Don't forget:","quote-pixel");
 		$options = get_option("pixelquote_widget");
-		
+
 		if (!is_array( $options )){
 			$options = array(
 				'title' => $title,
 				'version' => $pixel_quote_version
 			);
 		}
-		
+		echo "<div id='" . $this-> id . "'>";
 		echo "<aside class=\"widget\">";
-		echo "<h3 class=\"widget-title\">";
-		echo $options['title'];
-		echo "</h3>";
+		echo "<h3 class=\"widget-title\">" . $options['title'] . "</h3>";
+
 		//Widget Content
 		require_once( ABSPATH . 'wp-content/plugins/pixel-random-quotes-and-images/quotes.php' );
-		echo pixel_random_quote();
+		echo pixel_random_quote($this->id);
+
 		echo "</aside>";
+    echo "</div>";
 	}
 
 	function update($new_instance, $old_instance) {
