@@ -22,7 +22,7 @@ class pixelquote_widget extends WP_Widget {
 		echo "<h3 class=\"widget-title\">" . $options['title'] . "</h3>";
 
 		//Widget Content
-		require_once( ABSPATH . 'wp-content/plugins/pixel-random-quotes-and-images/quotes.php' );
+		require_once( trailingslashit(dirname(__FILE__)) . 'quotes.php');
 		echo pixel_random_quote($this->id);
 
 		echo "</aside>";

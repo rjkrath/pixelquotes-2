@@ -1,8 +1,10 @@
 <?php
 //global variable for values of new quote upload form when post is failed
 $pixel_new_upload = "";
+
 //register menu for admin page and start the main function
 add_action('admin_menu', 'pixel_admin_actions');
+
 function pixel_admin_actions() {
 	add_plugins_page("Pixel Quotes", __('Pixel Quotes Options', 'quote-pixel'), current_user_can('administrator'),"pixel-quotes", "pixel_admin_page");
 	add_action('admin_init', 'pixelquote_admin_style');
@@ -10,8 +12,9 @@ function pixel_admin_actions() {
 }
 //set css file
 function pixelquote_admin_style() {
-	wp_enqueue_style("pixelquote_admin_style", plugins_url( 'pixel-random-quotes-and-images/admin-style.css' , dirname(__FILE__) ), false, "1.0", "all");  
+	wp_enqueue_style("pixelquote_admin_style", plugins_url('admin-style.css' , __FILE__));
 }
+
 //switcher or main function
 function pixel_admin_page(){
 	pixel_install_check();//it has quotes in wp_options table? if not, it is create 3 quotes
